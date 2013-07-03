@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="easyframework-web">
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="easyframework-model.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-model/easyframework-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="easyframework-generic-dao.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-generic-dao/easyframework-generic-dao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="easyframework-common.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-common/easyframework-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="easyframework-persist.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-persist/easyframework-persist">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="easyframework-core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-core/easyframework-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="easyframework-web"/>
+        <property name="java-output-path" value="/easyframework-web/target/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+.accordion ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 10px
+}
+
+.accordion ul li {
+	padding: 0
+}
+
+.accordion ul li a {
+	line-height: 24px;
+	color: Black;
+	text-decoration: none;
+	cursor: pointer
+}
+
+.accordion ul li div {
+	margin: 2px 0;
+	padding-left: 10px;
+	padding-top: 2px;
+	border: 1px solid transparent
+}
+
+.menuItem li div:hover {
+	border: 1px dashed #D69C00;
+	background: #FFE88C;
+	cursor: pointer
+}
+
+.accordion ul li div.hover a {
+	color: #D16C00;
+	text-decoration: none
+}
+.accordion ul li div a.hover {
+	color: Red;
+	text-decoration: underline
+}
+.accordion ul li div.selected {
+	border: 1px solid #D69C00;
+	background: #FFE88C;
+	cursor: default
+}
+
+.accordion ul li div.selected a {
+	color: #D16C00;
+	font-weight: bold
+}
+
+.bigicon .img {
+	display: block
+}
+
+.bigicon li {
+	text-align: center
+}
+
+ul.bigicon li div {
+	padding-left: 0
+}
+

@@ -1,0 +1,269 @@
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background: #FFFFFF;
+}
+
+ul {
+	margin: 0;
+	padding: 0
+}
+
+li {
+	list-style-type: none
+}
+
+a {
+	color: Black;
+	text-decoration: none
+}
+
+a:hover {
+	
+}
+
+img {
+	border: 0
+}
+
+.tooltip { /*解决easyui 和 bootstrap的样式冲突，导致验证框提示不现实问题*/
+	opacity: 1;
+	filter: alpha(opacity =   100);
+}
+
+#header .div1 {
+	height: 56px;
+	padding: 0px 30px;
+	background: url('../img/header.png') repeat-x;
+	min-width: 900px;
+}
+
+#header .div2 {
+	color: #FFFFFF;
+	padding: 18px 0px 0px 0px;
+	float: left;
+}
+
+#header .div3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	text-align: right;
+	padding: 15px 0px 0px 0px;
+	float: right;
+}
+
+#header .div2 span {
+	font-weight: bold;
+}
+
+#container {
+	height: 100%;
+}
+
+body>#container {
+	height: auto;
+	min-height: 100%;
+}
+
+#content {
+	background: #FFFFFF url('../img/background.png') 0px 1px repeat-x;
+	padding: 10px 30px 0px 30px;
+	min-width: 900px;
+	padding-bottom: 128px;
+}
+/*底部版本信息样式*/
+#footer {
+	text-align: center;
+	height: 35px;
+	width: 100%;
+	line-height: 35px;
+	bottom: 0;
+	position: absolute;
+	font-size: 12px;
+}
+
+.box {
+	margin-bottom: 15px;
+}
+
+.box>.heading {
+	height: 38px;
+	padding-left: 7px;
+	padding-right: 7px;
+	border: 1px solid #DBDBDB;
+	background: url('../img/box.png') repeat-x;
+	-webkit-border-radius: 7px 7px 0px 0px;
+	-moz-border-radius: 7px 7px 0px 0px;
+	-khtml-border-radius: 7px 7px 0px 0px;
+	border-radius: 7px 7px 0px 0px;
+}
+
+.box>.heading h1 {
+	margin: 0px;
+	padding: 11px 0px 0px 0px;
+	color: #003A88;
+	font-size: 16px;
+	float: left;
+}
+
+.box>.heading h1 img {
+	float: left;
+	margin-top: -1px;
+	margin-left: 3px;
+	margin-right: 8px;
+}
+
+.box>.heading .buttons {
+	float: right;
+	padding-top: 7px;
+	margin-right: 5px;
+}
+
+.box>.heading .buttons .button {
+	margin-left: 5px;
+}
+
+.box>.content h2 {
+	text-transform: uppercase;
+	color: #FF802B;
+	font-size: 15px;
+	font-weight: bold;
+	padding-bottom: 3px;
+	border-bottom: 1px dotted #000000;
+}
+
+.box>.content {
+	padding: 10px;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	min-height: 300px;
+	overflow: auto;
+}
+
+a.button,.list a.button {
+	text-decoration: none;
+	color: #FFF;
+	display: inline-block;
+	padding: 5px 15px 5px 15px;
+	background: #003A88;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-khtml-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	cursor: pointer;
+}
+
+/*----编辑页面的样式 start----*/
+.form {
+	position: relative;
+	padding: 2px;
+}
+.form-content {
+	overflow: hidden;
+	padding: 0px 2px;
+}
+.form-area {
+	padding: 20px 5px 8px 5px;
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	display: inline-block;
+	position: relative;
+}
+
+.form-area:after {
+	background-color: #F5F5F5;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 0 4px 0;
+	color: #9DA0A4;
+	content: attr(title);
+	font-size: 12px;
+	font-weight: bold;
+	left: 1px;
+	padding: 1px;
+	position: absolute;
+	top: -1px;
+}
+
+
+.form-area>ul>li {
+	display: block;
+	float: left;
+	height: 33px;
+	vertical-align:middle;
+	margin: 3px;
+	position: relative;
+	width: 300px;
+}
+
+.form-area>ul>li>label {
+	float: left;
+	line-height: 30px;
+	padding: 0px;
+	width: 70px;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.form-area>ul>li>input{
+	float: left;
+	line-height: 30px;
+}
+.form-area-hide {
+	height: 0px;
+	overflow: hidden;
+}
+
+.form-area-hide:after {
+	color: #3A87AD;
+}
+
+.form-area .showLable {
+	border-bottom: 1px solid #CCCCCC;
+	color: #808080;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 18px;
+	padding: 4px;
+	height: 18px;
+	position: absolute;
+	overflow: hidden;
+}
+
+/*----编辑页面的样式 end----*/
+
+/*----查询工具栏 start----*/
+.form-search {
+	height: auto;
+	clear: both;
+}
+
+.form-search>ul>li {
+	width: 310px;
+	float: left;
+	line-height: 20px;
+	margin-top: 5px;
+}
+
+.form-search>ul>li>label {
+	line-height: 20px;
+	width: 80px;
+	vertical-align: middle;
+	margin: 0px;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+/*----查询页面 end----*/
