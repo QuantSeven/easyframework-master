@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@include file="common/header.jsp"%>
 <script type="text/javascript">
 <!--
@@ -17,11 +17,19 @@ $(function(){
 <body class="easyui-layout" fit="true">
 	<!-- 顶部logo面板 -->
 	<div region="north" border="false" style="height: 57px;">
-		<div id="header">
-			<div class="div1">
-				<div class="div2">
-					<!-- 放logo -->
-				</div>
+		<div class="nav-panel">
+			<div class="logo">
+					
+			</div>
+			
+			<div class="user-info">
+				<a href="${basePath }/logout"><i class="icon-off icon-white"></i>注销</a>
+			</div>
+			
+			<div class="separator"/>
+			</div>
+			<div class="user-info">
+				<a href="${basePath }/logout"><i class="icon-user icon-white"></i><shiro:principal property="username"/></a>
 			</div>
 		</div>
 	</div>

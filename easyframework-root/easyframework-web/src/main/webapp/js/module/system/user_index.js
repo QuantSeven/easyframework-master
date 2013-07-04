@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 	var i18nUser = EasyUtil.getI18NMessage("user"); // 每次进来获取国际化的信息
 	var that = currentPanel;
 	var userDataGrid = null, selectedItem = null;
@@ -46,9 +46,9 @@ $(function(){
 			width : 35,
 			formatter : function(value, row, index) {
 				if (value === '1') {
-					return '<span class="badge badge-success">启用</span>';
+					return '<span class="badge badge-success">' + i18nUser.txt.enable + '</span>';
 				} else {
-					return '<span class="badge badge-important">停用</span>';
+					return '<span class="badge badge-important">' + i18nUser.txt.disable + '</span>';
 				}
 			}
 		}, ] ],
@@ -73,7 +73,7 @@ $(function(){
 				}
 			});
 		} else {
-			EasyUtil.errorMsg('请选择一条记录');
+			EasyUtil.errorMsg(common.txt.pls);
 		}
 	});
 	$(that).find("#edit").bind("click", function() {
@@ -83,12 +83,9 @@ $(function(){
 			EasyUtil.errorMsg('请选择一条记录');
 		}
 	});
-	$(that).find("#seach").bind(
-			"click",
-			function() {
-				userDataGrid.datagrid('load', EasyUtil
-						.serializeFieldValues($('#searchForm')));
-			});
+	$(that).find("#seach").bind("click", function() {
+		userDataGrid.datagrid('load', EasyUtil.serializeFieldValues($('#searchForm')));
+	});
 
 	var userFormDialog = function(title, url) {
 		userFormDiv.dialog({
@@ -96,9 +93,9 @@ $(function(){
 			width : 645,
 			height : 410,
 			href : url,
-			modal:true ,
-			maximizable:true,
-			resizable:true,
+			modal : true,
+			maximizable : true,
+			resizable : true,
 			style : {
 				overflow : 'hidden'
 			},
