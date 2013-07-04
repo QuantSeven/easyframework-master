@@ -165,19 +165,17 @@ a.button,.list a.button {
 /*----编辑页面的样式 start----*/
 .form {
 	position: relative;
-	padding: 2px;
+	padding: 4px;
 }
-.form-content {
-	overflow: hidden;
-	padding: 0px 2px;
-}
+
 .form-area {
-	padding: 20px 5px 8px 5px;
+	padding: 20px 0px 3px;
 	background-color: #FFFFFF;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px 4px 4px 4px;
 	display: inline-block;
 	position: relative;
+	width:100%;
 }
 
 .form-area:after {
@@ -188,37 +186,35 @@ a.button,.list a.button {
 	content: attr(title);
 	font-size: 12px;
 	font-weight: bold;
-	left: 1px;
+	left: 0px;
 	padding: 1px;
 	position: absolute;
 	top: -1px;
 }
 
-
+.form-content {
+	overflow-y: auto;
+	padding: 0px 2px;
+}
 .form-area>ul>li {
 	display: block;
 	float: left;
-	height: 33px;
-	vertical-align:middle;
-	margin: 3px;
+	height: 25px;
+	margin: 0;
+	padding: 6px 5px;;
 	position: relative;
-	width: 300px;
+	width: 290px;
 }
 
 .form-area>ul>li>label {
 	float: left;
-	line-height: 30px;
+	line-height: 27px;
 	padding: 0px;
-	width: 70px;
+	width: 65px;
 	text-align: left;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-
-.form-area>ul>li>input{
-	float: left;
-	line-height: 30px;
 }
 .form-area-hide {
 	height: 0px;
@@ -241,6 +237,9 @@ a.button,.list a.button {
 	overflow: hidden;
 }
 
+.form .form-content input:text {
+	float: left;
+}
 /*----编辑页面的样式 end----*/
 
 /*----查询工具栏 start----*/

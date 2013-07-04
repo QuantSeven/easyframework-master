@@ -1,73 +1,60 @@
 $(function() {
+	var that = currentPanel;
 	var i18nMenu = EasyUtil.getI18NMessage("menu"); // 每次进来获取国际化的信息
-	var that = currentPanel, menuTreeGrid = null, selectedItem = null;
-	var menuPanal = $(that).find("#menu");
-	console.info(menuPanal);
-	menuTreeGrid = $(that).find('#menuTreeGrid').treegrid({
-		url : 'menu/treeMenu',
-		idField:'id',
-		fitColumns:true,
-		animate:true,
-	    treeField:'name',    
-	    columns:[[    
-	        {field:'name',title:'name',width:180},
-	        {field:'url',title:'url',width:180} 
-	    ]],    
-	    onContextMenu: function(e, row) {
+	var  menuTreeGrid = null, selectedItem = null;
+	var menuFormDiv = $("<div id='menuFormDiv'></div>");
+	var menuContext = $(that).find('#menu');
+	menuTreeGrid = $('#menuTreeGrid').treegrid({
+		url : 'menu/tree',
+		idField : 'id',
+		fitColumns : true,
+		fit : true,
+		treeField : 'name',
+		columns : [ [ {
+			title : '名称',
+			field : 'name',
+			width : 180
+		}, {
+			title : '地址',
+			field : 'url',
+			width : 180
+		} ] ],
+		onContextMenu : function(e, row) {
 			e.preventDefault();
 			menuTreeGrid.treegrid('unselectAll');
 			menuTreeGrid.treegrid('select', row.id);
-			menuPanal.menu('show', {
+			menuContext.menu('show', {
 				left : e.pageX,
 				top : e.pageY
 			});
-		}
+		},
 	});
 
-	$(that).find("#add").bind("click", function() {
-		userFormDialog('添加用户', 'user/form');
-	});
-	$(that).find("#delete").bind("click", function() {
-		if (selectedItem) {
-			EasyUtil.confirm("确定要删除选中的记录么？", function(r) {
-				if (r) {
-					EasyUtil.ajaxData('user/delete', {
-						data : EasyUtil.converToJsonStr(selectedItem),
-						contentType : 'application/json'
-					});
-					userDataGrid.datagrid('reload'); // 重新载入当前页面数据
-				}
-			});
-		} else {
-			EasyUtil.errorMsg('请选择一条记录');
-		}
-	});
-	$(that).find("#edit").bind("click", function() {
-		if (selectedItem) {
-			userFormDialog('添加用户', 'user/form?id=' + selectedItem.id);
-		} else {
-			EasyUtil.errorMsg('请选择一条记录');
-		}
-	});
-	$(that).find("#seach").bind("click", function() {
-		userDataGrid.datagrid('load', EasyUtil.serializeFieldValues($('#searchForm')));
+	$(that).find("#add").on("click",function() {
+		menuFormDialog("添加菜单", "menu/form");
 	});
 
-	var userFormDialog = function(title, url) {
-		$.modal({
+	var menuFormDialog = function(title, url) {
+		menuFormDiv.dialog({
 			title : title,
-			width : 600,
+			width : 645,
 			height : 410,
 			href : url,
+			modal:true ,
+			maximizable:true,
+			resizable:true,
 			style : {
 				overflow : 'hidden'
+			},
+			onClose : function() {
+				menuFormDiv.dialog('destroy');
 			},
 			buttons : [ {
 				text : '保存',
 				iconCls : 'icon-ok',
 				handler : function() {
 					EasyUtil.openProgress(); // 显示进度条
-					$('#userForm').form('submit', {
+					$('#menuForm').form('submit', {
 						onSubmit : function() {
 							var isValid = $(this).form('validate');
 							if (!isValid) {
@@ -77,9 +64,9 @@ $(function() {
 						},
 						success : function(data) {
 							selectedItem = null;
-							userDataGrid.datagrid('reload'); // 重新载入当前页面数据
+							menuTreeGrid.treegrid('reload'); // 重新载入当前页面数据
 							EasyUtil.closeProgress();
-							$.modal.instance.dialog("close");
+							menuFormDiv.dialog("close");
 							EasyUtil.successMsg(data);
 						},
 						onLoadError : function(data) {
@@ -90,9 +77,8 @@ $(function() {
 				}
 			}, {
 				text : '关闭',
-			    iconCls:'icon-refresh icon-spin',
 				handler : function() {
-					$.modal.instance.dialog("close");
+					menuFormDiv.dialog("close");
 				}
 			} ]
 		});

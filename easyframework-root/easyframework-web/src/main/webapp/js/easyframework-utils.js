@@ -1,6 +1,4 @@
-;
-(function($, window, undefined) {
-
+;(function($, window, undefined) {
 	// 公用函数
 	function EasyframeworkUI() {
 		// 缓存实例
@@ -63,16 +61,16 @@
 			url : url,
 			data : settings.data || {},
 			async : settings.async == undefined ? true : false,
-			contentType : settings.contentType || "application/x-www-form-urlencoded",
+			contentType : settings.contentType
+					|| "application/x-www-form-urlencoded",
 			cache : settings.cache || false,
 			success : function(response) {
 				if (response !== null) {
-					var result = EasyUtil.converToJson(response);
-					if (result && result.message && result.message != "") {
-						if (result.success) {
-							EasyUtil.successMsg(result.message);
+					if (response && response.msg && response.msg != "") {
+						if (response.success) {
+							EasyUtil.successMsg(response.msg);
 						} else {
-							EasyUtil.errorMsg(result.message);
+							EasyUtil.errorMsg(response.msg);
 						}
 					}
 					callback && callback(response);
@@ -91,7 +89,8 @@
 	EasyframeworkUI.prototype.successMsg = function(message) {
 		$.messager.show({
 			title : i18nCommon.txt.warmtip,
-			msg : EasyUtil.converToJson(message).msg ? EasyUtil.converToJson(message).msg : message,
+			msg : EasyUtil.converToJson(message).msg ? EasyUtil
+					.converToJson(message).msg : message,
 			timeout : 5000,
 			showType : 'slide'
 		});
@@ -100,12 +99,13 @@
 	EasyframeworkUI.prototype.errorMsg = function(message) {
 		$.messager.show({
 			title : i18nCommon.txt.warmtip,
-			msg : EasyUtil.converToJson(message).msg ? EasyUtil.converToJson(message).msg : message,
+			msg : EasyUtil.converToJson(message).msg ? EasyUtil
+					.converToJson(message).msg : message,
 			timeout : 5000,
 			showType : 'slide'
 		});
 	};
-	// 错误消息提示
+	// 确认消息提示
 	EasyframeworkUI.prototype.confirm = function(message, callback) {
 		$.messager.confirm(i18nCommon.txt.warmtip, message, function(r) {
 			if (r) {
@@ -116,16 +116,16 @@
 					callback.call(this, false);
 			}
 		});
-
 	};
-	// 打开进度条
+	// 进度条显示
 	EasyframeworkUI.prototype.openProgress = function() {
 		$.messager.progress();
 	};
-	// 关闭进度条
+	// 关闭进度条显示
 	EasyframeworkUI.prototype.closeProgress = function() {
-		$.messager.progress("close");
+		$.messager.progress('close');
 	};
+
 	// 获取所有国际化文件的方法
 	EasyframeworkUI.prototype.getI18NMessage = function(prefix) {
 		var result = {};
@@ -135,7 +135,7 @@
 			},
 			async : false
 		}, function(data) {
-
+			
 			$.map(data || {}, function(v, i) {
 				list2json(v, i.replace(prefix + ".", ""), result);
 			});
@@ -151,50 +151,52 @@
 		}
 		return result;
 	};
-
+	
 	EasyframeworkUI.prototype.serializeFieldValues = function(form) {
 		var ret = {};
-		// 文本类型
-		form.find('input[type=text], input[type=password], textarea, select:not([multiple])').each(function() {
-			var name = $(this).prop('name');
-			ret[name] = $(this).val();
-		});
-		form.find('input[type=radio]').each(function() {
-			var name = $(this).prop('name');
-			if (!ret[name]) {
-				ret[name] = null;
-			}
-			if ($(this).prop('checked')) {
-				ret[name] = $(this).prop('value');
-			}
-		});
-		// 数值类型
-		form.find('input[type=number]').each(function() {
-			var name = $(this).prop('name');
-			ret[name] = Number($(this).val());
-		});
-		// 布尔类型
-		form.find('input[type=checkbox]:not([value])').each(function() {
-			var name = $(this).prop('name');
-			ret[name] = $(this).prop('checked');
-		});
-		// 数组
-		form.find('select[multiple]').each(function() {
-			var name = $(this).prop('name');
-			ret[name] = $(this).val() || [];
-		});
-		form.find('input[type=checkbox][value]').each(function() {
-			var name = $(this).prop('name');
-			if (!ret[name]) {
-				ret[name] = [];
-			}
-			if ($(this).prop('checked')) {
-				ret[name].push($(this).prop('value'));
-			}
-		});
-		return ret;
+        // 文本类型
+		form.find('input[type=text], input[type=password], textarea, select:not([multiple])').each(function () {
+            var name = $(this).prop('name');
+            ret[name] = $(this).val();
+        });
+		form.find('input[type=radio]').each(function () {
+            var name = $(this).prop('name');
+            if (!ret[name]) {
+                ret[name] = null;
+            }
+            if ($(this).prop('checked')) {
+                ret[name] = $(this).prop('value');
+            }
+        });
+        // 数值类型
+		form.find('input[type=number]').each(function () {
+            var name = $(this).prop('name');
+            ret[name] = Number($(this).val());
+        });
+        // 布尔类型
+		form.find('input[type=checkbox]:not([value])').each(function () {
+            var name = $(this).prop('name');
+            ret[name] = $(this).prop('checked');
+        });
+        // 数组
+		form.find('select[multiple]').each(function () {
+            var name = $(this).prop('name');
+            ret[name] = $(this).val() || [];
+        });
+		form.find('input[type=checkbox][value]').each(function () {
+            var name = $(this).prop('name');
+            if (!ret[name]) {
+                ret[name] = [];
+            }
+            if ($(this).prop('checked')) {
+                ret[name].push($(this).prop('value'));
+            }
+        });
+        return ret;
 	};
 
 	window.EasyUtil = $.EasyUtil = new EasyframeworkUI();
 	var i18nCommon = EasyUtil.getI18NMessage("common");
 })(jQuery, window);
+
+

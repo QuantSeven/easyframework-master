@@ -1,6 +1,8 @@
-$(function() {
+$(function(){
 	var i18nUser = EasyUtil.getI18NMessage("user"); // 每次进来获取国际化的信息
-	var that = currentPanel, userDataGrid = null, selectedItem = null;
+	var that = currentPanel;
+	var userDataGrid = null, selectedItem = null;
+	var userFormDiv = $("<div id='userFormDiv'></div>");
 	userDataGrid = $(that).find('#userDataGrid').datagrid({
 		url : 'user/list',
 		pagination : true,
@@ -41,9 +43,9 @@ $(function() {
 		}, {
 			field : 'status',
 			title : i18nUser.txt.status,
-			width : 30,
+			width : 35,
 			formatter : function(value, row, index) {
-				if (value == 1) {
+				if (value === 1) {
 					return '<span class="badge badge-success">启用</span>';
 				} else {
 					return '<span class="badge badge-important">停用</span>';
@@ -81,24 +83,33 @@ $(function() {
 			EasyUtil.errorMsg('请选择一条记录');
 		}
 	});
-	$(that).find("#seach").bind("click", function() {
-		userDataGrid.datagrid('load', EasyUtil.serializeFieldValues($('#searchForm')));
-	});
+	$(that).find("#seach").bind(
+			"click",
+			function() {
+				userDataGrid.datagrid('load', EasyUtil
+						.serializeFieldValues($('#searchForm')));
+			});
 
 	var userFormDialog = function(title, url) {
-		$.modal({
+		userFormDiv.dialog({
 			title : title,
-			width : 700,
+			width : 645,
 			height : 410,
 			href : url,
+			modal:true ,
+			maximizable:true,
+			resizable:true,
 			style : {
 				overflow : 'hidden'
+			},
+			onClose : function() {
+				userFormDiv.dialog('destroy');
 			},
 			buttons : [ {
 				text : '保存',
 				iconCls : 'icon-ok',
 				handler : function() {
-					EasyUtil.openProgress(); // 显示进度条
+					EasyUtil.progress(); // 显示进度条
 					$('#userForm').form('submit', {
 						onSubmit : function() {
 							var isValid = $(this).form('validate');
@@ -111,7 +122,7 @@ $(function() {
 							selectedItem = null;
 							userDataGrid.datagrid('reload'); // 重新载入当前页面数据
 							EasyUtil.closeProgress();
-							$.modal.instance.dialog("close");
+							userFormDiv.dialog("close");
 							EasyUtil.successMsg(data);
 						},
 						onLoadError : function(data) {
@@ -122,9 +133,8 @@ $(function() {
 				}
 			}, {
 				text : '关闭',
-			    iconCls:'icon-refresh icon-spin',
 				handler : function() {
-					$.modal.instance.dialog("close");
+					userFormDiv.dialog("close");
 				}
 			} ]
 		});
