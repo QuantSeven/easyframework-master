@@ -8,7 +8,7 @@ $(function(){
 	$("#index_tabs").tabs({
 		fit:true,
 		onSelect:function(title,index){
-			currentPanel = $("#index_tabs").tabs("getTab",index);
+			currentPanel = $(this).tabs("getTab",index);
 		}
 	});
 });
@@ -31,7 +31,7 @@ $(function(){
 	</div>
 	<!-- 中间tab面板 -->
 	<div region="center" border="false" style="overflow: hidden;">
-		<div id="index_tabs" class="easyui-tabs" fit="true" >   
+		<div id="index_tabs" >   
 			<div title="首页" collapsible="true">
 				<%@include file="common/portal.jsp"%>
 			</div>

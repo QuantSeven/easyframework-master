@@ -10,7 +10,6 @@
 <!-- jquery -->
 <script type="text/javascript" src="${basePath }/js/plugins/jquery/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" src="${basePath }/js/plugins/jui/jquery-ui.min.js"></script>
-
 <!-- 引入bootstrap样式 -->
 <link rel="stylesheet" type="text/css" href="${basePath }/css/bootstrap/css/bootstrap.min.css" media="screen"/>
 <link rel="stylesheet" type="text/css" href="${basePath }/css/bootstrap/css/bootstrap-responsive.min.css" media="screen"/>
@@ -29,10 +28,6 @@
 <!-- 下一个jquery模板 -->
 <script type="text/javascript" src="${basePath }/js/plugins/jsviews/jsviews.min.js"></script>
 
-<!-- bootstrap扩展的样式 
-<link rel="stylesheet" href="${basePath }/css/buttons/css/buttons.css" type="text/css">
-<link rel="stylesheet" href="${basePath }/css/buttons/css/font-awesome.min.css" type="text/css">
--->
 <!-- 引入EasyFramework-->
 <link rel="stylesheet" type="text/css" href="${basePath }/css/easyframework.css" />
 <script type="text/javascript" src="${basePath }/js/easyframework-utils.js" ></script>

@@ -90,6 +90,7 @@ public class UserCtl extends AbstractCtl {
 			user = userService.modify(user);
 			jsonModel.setMsg(getMessage("common.msg.update.success"));
 		} catch (Exception e) {
+			jsonModel.setSuccess(false);
 			jsonModel.setMsg(getMessage("common.msg.update.error") + "\n" + e.getMessage());
 			logger.error(e.getMessage());
 		}

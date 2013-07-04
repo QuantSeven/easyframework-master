@@ -3,5 +3,5 @@
 <c:set var="basePath" value="${pageContext.request.contextPath}" scope="session"/>
 <c:set var="jsBasePath" value="${pageContext.request.contextPath}/js/module/" scope="session"/> 
 <script type="text/javascript">
- var currentPanel;
+	var currentPanel;
 </script>

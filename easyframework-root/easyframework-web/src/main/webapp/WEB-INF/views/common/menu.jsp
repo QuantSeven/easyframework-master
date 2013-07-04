@@ -7,6 +7,7 @@ $(function() {
 		$("#menuContainer" ).html($("#menuTemplate").render(data));
 		$('#menuContainer').accordion({animate:false,fit:true,border:false }); 
 		$(".link").bind("click",function(){
+			$.messager.progress();
 			$(".link").removeClass("selected");
 			$(this).addClass("selected");
 			var menuItem = $(this).find("a[data-ref='link']");
@@ -27,9 +28,10 @@ function addTab(url,title,iconCls) {
 	};
 	if (t.tabs('exists', opts.title)) {
 		t.tabs('select', opts.title);
-		parent.$.messager.progress('close');
+		$.messager.progress('close');
 	} else {
 		t.tabs('add', opts);
+		$.messager.progress('close');
 	}
 }
 </script>

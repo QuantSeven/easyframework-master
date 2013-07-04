@@ -45,7 +45,7 @@ $(function(){
 			title : i18nUser.txt.status,
 			width : 35,
 			formatter : function(value, row, index) {
-				if (value === 1) {
+				if (value === '1') {
 					return '<span class="badge badge-success">启用</span>';
 				} else {
 					return '<span class="badge badge-important">停用</span>';
@@ -109,7 +109,7 @@ $(function(){
 				text : '保存',
 				iconCls : 'icon-ok',
 				handler : function() {
-					EasyUtil.progress(); // 显示进度条
+					EasyUtil.openProgress(); // 显示进度条
 					$('#userForm').form('submit', {
 						onSubmit : function() {
 							var isValid = $(this).form('validate');

@@ -33,7 +33,7 @@ img {
 	border: 0
 }
 
-.tooltip { /*解决easyui 和 bootstrap的样式冲突，导致验证框提示不现实问题*/
+.tooltip { /*解决easyui 和 bootstrap的样式冲突，导致验证框提示不显示问题*/
 	opacity: 1;
 	filter: alpha(opacity =   100);
 }
