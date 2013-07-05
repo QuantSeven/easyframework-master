@@ -7,6 +7,7 @@
 $(function(){
 	$("#index_tabs").tabs({
 		fit:true,
+		style:{overflow: 'hidden'},
 		onSelect:function(title,index){
 			currentPanel = $(this).tabs("getTab",index);
 		}
@@ -16,7 +17,7 @@ $(function(){
 </script>
 <body class="easyui-layout" fit="true">
 	<!-- 顶部logo面板 -->
-	<div region="north" border="false" style="height: 57px;">
+	<div region="north" border="false" style="height: 57px;overflow: hidden;">
 		<div class="nav-panel">
 			<div class="logo">
 					

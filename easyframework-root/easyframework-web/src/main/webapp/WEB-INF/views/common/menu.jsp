@@ -24,6 +24,7 @@ function addTab(url,title,iconCls) {
 		closable : true,
 		iconCls : iconCls,
 		href : url,
+		style:{'overflow': 'hidden'},
 		border : false
 	};
 	if (t.tabs('exists', opts.title)) {

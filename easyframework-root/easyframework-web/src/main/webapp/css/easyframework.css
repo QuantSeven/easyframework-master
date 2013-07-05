@@ -36,9 +36,20 @@ img {
 /*解决easyui 和 bootstrap的样式冲突，导致验证框提示不显示问题*/
 .tooltip {
 	opacity: 1;
-	filter: alpha(opacity =     100);
+	filter: alpha(opacity =         100);
+}
+/*登录页面*/
+.remember {
+	margin-top: 3px;
 }
 
+.center {
+	display: block;
+	float: none !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	text-align: center;
+}
 /**************logo 设置和  用户信息  设置*******************/
 .nav-panel {
 	height: 56px;
@@ -53,29 +64,30 @@ img {
 
 .nav-panel .logo {
 	display: block;
-    float: left;
-    height: 56px;
-    width: 306px;
+	float: left;
+	height: 56px;
+	width: 306px;
 }
 
 .nav-panel .user-info {
 	float: right;
 	margin: 20px 0 0 0;
 }
+
 .nav-panel .user-info>a {
 	color: #FFFFFF;
 }
-.nav-panel .separator {
-    background-color: #55A2D5;
-    float: right;
-    font-size: 1px;
-    height: 12px;
-    line-height: 1px;
-    margin: 24px 10px 10px 10px;
-    overflow: hidden;
-    width: 1px;
-}
 
+.nav-panel .separator {
+	background-color: #55A2D5;
+	float: right;
+	font-size: 1px;
+	height: 12px;
+	line-height: 1px;
+	margin: 24px 10px 10px 10px;
+	overflow: hidden;
+	width: 1px;
+}
 
 #container {
 	height: 100%;
@@ -104,7 +116,8 @@ body>#container {
 }
 
 .box {
-	margin-bottom: 15px;
+	min-height:100%;
+	overflow: hidden;
 }
 
 .box>.heading {
@@ -119,17 +132,18 @@ body>#container {
 	border-radius: 7px 7px 0px 0px;
 }
 
-.box>.heading h1 {
+.box>.heading span {
 	margin: 0px;
-	padding: 11px 0px 0px 0px;
+	padding: 10px 0px 0px 0px;
 	color: #003A88;
+	font-weight:bold;
 	font-size: 16px;
 	float: left;
 }
 
-.box>.heading h1 img {
+.box>.heading img {
 	float: left;
-	margin-top: -1px;
+	margin-top: 5px;
 	margin-left: 3px;
 	margin-right: 8px;
 }
@@ -154,11 +168,11 @@ body>#container {
 }
 
 .box>.content {
-	padding: 10px;
-	border-left: 1px solid #CCCCCC;
+	/*border-left: 1px solid #CCCCCC;
 	border-right: 1px solid #CCCCCC;
-	border-bottom: 1px solid #CCCCCC;
-	min-height: 300px;
+	border-bottom: 1px solid #CCCCCC;*/
+	height:auto;
+	width:100%;
 	overflow: auto;
 }
 
@@ -174,7 +188,43 @@ a.button,.list a.button {
 	border-radius: 10px 10px 10px 10px;
 	cursor: pointer;
 }
+/*列表页面样式*/
+.box>.content>.datagrid-search {
+	height:100%;
+	width:100%;
 
+} 
+.box>.content>.datagrid-content {
+	min-height:300px;
+	width:100%;
+	padding-top:4px;
+}
+/*----查询工具栏 start----*/
+.form-search {
+	width:100%;
+	height: auto;
+	clear: both;
+	margin: 0;
+}
+
+.form-search>ul>li {
+	width: 310px;
+	float: left;
+	line-height: 20px; 
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+.form-search>ul>li>label {
+	line-height: 20px;
+	min-width: 80px;
+	vertical-align: middle;
+	margin: 0px;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 /*----编辑页面的样式 start----*/
 .form {
 	position: relative;
@@ -257,27 +307,5 @@ a.button,.list a.button {
 }
 /*----编辑页面的样式 end----*/
 
-/*----查询工具栏 start----*/
-.form-search {
-	height: auto;
-	clear: both;
-}
 
-.form-search>ul>li {
-	width: 310px;
-	float: left;
-	line-height: 20px;
-	margin-top: 5px;
-}
-
-.form-search>ul>li>label {
-	line-height: 20px;
-	width: 80px;
-	vertical-align: middle;
-	margin: 0px;
-	text-align: left;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
 /*----查询页面 end----*/

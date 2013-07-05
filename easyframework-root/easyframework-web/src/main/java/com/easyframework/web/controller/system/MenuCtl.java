@@ -46,9 +46,6 @@ public class MenuCtl extends AbstractCtl {
 	
 	@RequestMapping(value = "index", method = { RequestMethod.GET })
 	public String index() {
-		if (SecurityUtils.getSubject().isPermitted("menu:view")) {
-			System.out.println("aaaaaaaaa");
-		}
 		return "system/menu_index";
 	}
 

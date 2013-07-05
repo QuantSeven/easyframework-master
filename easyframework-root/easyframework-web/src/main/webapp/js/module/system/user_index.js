@@ -1,5 +1,6 @@
 $(function() {
 	var i18nUser = EasyUtil.getI18NMessage("user"); // 每次进来获取国际化的信息
+	var commonBtn = EasyUtil.getI18NMessage("common.btn"); // 每次进来获取国际化的信息
 	var that = currentPanel;
 	var userDataGrid = null, selectedItem = null;
 	var userFormDiv = $("<div id='userFormDiv'></div>");
@@ -59,11 +60,11 @@ $(function() {
 	});
 
 	$(that).find("#add").bind("click", function() {
-		userFormDialog('添加用户', 'user/form');
+		userFormDialog(i18nUser.txt.adduser, 'user/form');
 	});
 	$(that).find("#delete").bind("click", function() {
 		if (selectedItem) {
-			EasyUtil.confirm("确定要删除选中的记录么？", function(r) {
+			EasyUtil.confirm(i18nUser.txt.suredelete, function(r) {
 				if (r) {
 					EasyUtil.ajaxData('user/delete', {
 						data : EasyUtil.converToJsonStr(selectedItem),
@@ -78,9 +79,9 @@ $(function() {
 	});
 	$(that).find("#edit").bind("click", function() {
 		if (selectedItem) {
-			userFormDialog('添加用户', 'user/form?id=' + selectedItem.id);
+			userFormDialog(i18nUser.txt.edituser, 'user/form?id=' + selectedItem.id);
 		} else {
-			EasyUtil.errorMsg('请选择一条记录');
+			EasyUtil.errorMsg(i18nUser.txt.noselete);
 		}
 	});
 	$(that).find("#seach").bind("click", function() {
@@ -103,7 +104,7 @@ $(function() {
 				userFormDiv.dialog('destroy');
 			},
 			buttons : [ {
-				text : '保存',
+				text : commonBtn.save,
 				iconCls : 'icon-ok',
 				handler : function() {
 					EasyUtil.openProgress(); // 显示进度条
@@ -129,7 +130,7 @@ $(function() {
 					});
 				}
 			}, {
-				text : '关闭',
+				text : commonBtn.close,
 				handler : function() {
 					userFormDiv.dialog("close");
 				}
