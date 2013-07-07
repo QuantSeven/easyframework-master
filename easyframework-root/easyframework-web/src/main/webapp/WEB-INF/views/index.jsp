@@ -35,7 +35,7 @@ $(function(){
 		</div>
 	</div>
 	<!-- 导航菜单 -->
-	<div title="导航菜单" region="west" style="width: 200px;">
+	<div title="导航菜单" region="west" style="width:200px">
 		<%@include file="common/menu.jsp"%>
 	</div>
 	<!-- 中间tab面板 -->
