@@ -8,7 +8,6 @@
 <title>EasyFramework</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap-responsive.min.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/easyframework.css" />
 <script type="text/javascript" src="js/plugins/jquery/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
 	function changeR(node) {
@@ -16,78 +15,165 @@
 		node.src = "randomcode?time=" + new Date().getTime();
 	}
 </script>
+<style type="text/css">
+
+.login-box {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 6px 6px 6px 6px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+	margin: 0 auto 24px;
+	position: relative;
+	width: 480px;
+	top:50px;
+}
+.login-box .alert-login {
+	margin : 10px;
+	width:85%; 
+} 
+.login-box .top-panel {
+	background: none repeat scroll 0 0 #E0E0E0;
+	border-bottom: 1px solid #CCCCCC;
+	border-radius: 6px 6px 0 0;
+	font: 100 15px/42px 'PT Sans', sans-serif;
+	height: 42px;
+	padding: 0 20px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.login-box .center-panel {
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 100%;  
+    height:100px; 
+}
+.login-box .center-panel .left {
+    float: left;
+    width:100px; 
+   	margin-left:60px; 
+}
+.login-box .center-panel .right {
+    float: right;
+    margin-right:50px; 
+    margin-top:15px;
+} 
+.login-box .bottom-panal {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid #E7E7E7;
+    padding: 12px 20px;
+     margin-top:15px;
+}
+.login-box .link-forgetpass {
+    display: block;
+    font-size: 11px;
+    padding: 5px 0 0;
+}
+.login-form {
+	margin : 0; 
+}
+</style>
+
+<script type="text/javascript">
+$(function(){
+	form_wrapper = $('#forrgotpass_form');
+	 $('.linkform a,.link-forgetpass a').on('click',function(e){
+		 $('#login_form').toggle();
+		 form_wrapper.toggle();
+	 });
+	/* function boxHeight() {
+		form_wrapper.animate({ marginTop : ( - ( form_wrapper.height() / 2) - 24) },400);	
+	};
+	form_wrapper.css({ marginTop : ( - ( form_wrapper.height() / 2) - 24) });
+    $('.linkform a,.link-forgetpass a').on('click',function(e){
+		var target	= $(this).attr('href'),
+			target_height = $(target).actual('height');
+		$(form_wrapper).css({
+			'height'		: form_wrapper.height()
+		});	
+		$(form_wrapper.find('form:visible')).fadeOut(400,function(){
+			form_wrapper.stop().animate({
+                height	 : target_height,
+				marginTop: ( - (target_height/2) - 24)
+            },500,function(){
+                $(target).fadeIn(400);
+                $('.links_btm .linkform').toggle();
+				$(form_wrapper).css({
+					'height'		: ''
+				});	
+            });
+		});
+		e.preventDefault();
+	}); */
+});
+</script>
 </head>
 <body>
-	<div id="container">
-		<div class="row-fluid">
-			<div class="span12">
-				<div class="nav-panel"></div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="well span5 center login-box">
-				<div class="alert alert-info">Please login with your Username and Password.</div>
-				<form class="form-horizontal" action="${pageContext.request.contextPath}/login" method="post">
-					<fieldset>
-						<div class="input-prepend" title="Username" data-rel="tooltip">
-							<span class="add-on"><i class="icon-user"></i></span><input autofocus name="username" id="username" type="text" value="qya" />
-						</div>
-						<div class="clearfix"></div>
-
-						<div class="input-prepend" title="Password" data-rel="tooltip">
-							<span class="add-on"><i class="icon-lock"></i></span><input name="password" id="password" type="password" value="123" />
-						</div>
-						<div class="clearfix"></div>
-
+	<div class="nav-panel"></div>
+	<div class="login-box">
+		<form action="/login" method="post" id="login_form" class="login-form">
+			<div class="top-panel"><img src="img/lockscreen.png" alt="" />  后台管理系统 </div>
+			<%
+				String error = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+				if (error != null) {
+			%>
+			<div class="alert alert-info alert-login">登录失败，请重试</div>
+			<%
+				}
+			%>
+			<div class="center-panel">
+				<div class="left">
+					<img src="img/login.png"  /> 
+				</div>
+				<div class="right">
+					<div class="form-row">
 						<div class="input-prepend">
-							<label class="checkbox"><input type="checkbox">Remember me</label>
+							<span class="add-on"><i class="icon-user"></i></span><input type="text" id="username" name="username" placeholder="Username" value="qya" />
 						</div>
-						<div class="clearfix"></div>
-
-						<p class="center span5">
-							<button type="submit" class="btn btn-primary">Login</button>
-						</p>
-					</fieldset>
-				</form>
+					</div>
+					<div class="form-row">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span><input type="password" id="password" name="password" placeholder="Password" value="132" />
+						</div>
+					</div>
+					<div class="form-row clearfix">
+						<label class="checkbox"><input type="checkbox" /> Remember me</label>
+					</div>
+				</div>
 			</div>
-			<div class="well span5 center login-box"></div>
-		</div>
+			<div class="bottom-panal clearfix">
+				<button class="btn pull-right" type="submit">登录</button>
+				<span class="link-forgetpass"><a href="#reg_form">Forgot password?</a></span>
+			</div>
+		</form>
+	</div>
+	<div class="login-box">
+		<form action="/login"  method="post" id="forrgotpass_form" class="login-form" style="display: none">
+			<div class="center-panel">
+				<div class="left">
+					<img src="img/login.png"  /> 
+				</div>
+				<div class="right">
+					<div class="form-row">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-user"></i></span><input type="text" id="username" name="username" placeholder="Username" value="qya" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span><input type="password" id="password" name="password" placeholder="Password" value="132" />
+						</div>
+					</div>
+					<div class="form-row clearfix">
+						<label class="checkbox"><input type="checkbox" /> Remember me</label>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-panal clearfix">
+				<button class="btn pull-right" type="submit">登录</button>
+				<span class="link-forgetpass"><a href="#reg_form">Forgot password?</a></span>
+			</div>
+		</form>
 	</div>
 </body>
 </html>
-
-
-<!-- <div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span12 center login-header">
-						<h2>Welcome to Charisma</h2>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="well span5 center login-box">
-						<div class="alert alert-info">Please login with your Username and Password.</div>
-						<form class="form-horizontal" action="index.html" method="post">
-							<fieldset>
-								<div class="input-prepend" title="Username" data-rel="tooltip">
-									<span class="add-on"><i class="icon-user"></i></span><input autofocus class="input-large span10" name="username" id="username" type="text" value="admin" />
-								</div>
-								<div class="clearfix"></div>
-
-								<div class="input-prepend" title="Password" data-rel="tooltip">
-									<span class="add-on"><i class="icon-lock"></i></span><input class="input-large span10" name="password" id="password" type="password" value="admin123456" />
-								</div>
-								<div class="clearfix"></div>
-
-								<div class="input-prepend">
-									<label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
-								</div>
-								<div class="clearfix"></div>
-
-								<p class="center span5">
-									<button type="submit" class="btn btn-primary">Login</button>
-								</p>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-			</div> -->

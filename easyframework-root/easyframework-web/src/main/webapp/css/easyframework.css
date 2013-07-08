@@ -117,7 +117,7 @@ body>#container {
 /*列表页面样式*/
 .datagrid-search {
 	width:100%;
-	height: 100%;
+	height:100%;
 	overflow: auto;
 	margin-top:41px;
 	border-left: 1px solid #DBDBDB;
@@ -162,12 +162,12 @@ body>#container {
 
 .box>.heading .buttons {
 	float: right;
-	padding-top: 7px;
-	margin-right: 5px;
+	padding-top: 3px;
+	margin-right: 2px;
 }
 
 .box>.heading .buttons .button {
-	margin-left: 5px;
+	margin: 0px;
 }
 
 .box>.content h2 {
@@ -190,17 +190,19 @@ body>#container {
 
 a.button,.list a.button {
 	text-decoration: none;
-	color: #FFF;
+	color: #0000;
 	display: inline-block;
 	padding: 5px 15px 5px 15px;
-	background: #003A88;
 	-webkit-border-radius: 10px 10px 10px 10px;
 	-moz-border-radius: 10px 10px 10px 10px;
 	-khtml-border-radius: 10px 10px 10px 10px;
 	border-radius: 10px 10px 10px 10px;
 	cursor: pointer;
 }
-
+a.button:hover {
+	background: #00b5e5;
+	color:#FFFFFF;
+}
 /*----查询工具栏 start----*/
 .form-search {
 	width:100%;

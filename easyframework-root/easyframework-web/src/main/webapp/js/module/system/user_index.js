@@ -74,7 +74,7 @@ $(function() {
 				}
 			});
 		} else {
-			EasyUtil.errorMsg(common.txt.pls);
+			EasyUtil.errorMsg(i18nUser.txt.noselete);
 		}
 	});
 	$(that).find("#edit").bind("click", function() {
@@ -84,7 +84,7 @@ $(function() {
 			EasyUtil.errorMsg(i18nUser.txt.noselete);
 		}
 	});
-	$(that).find("#seach").bind("click", function() {
+	$(that).find("#search").bind("click", function() {
 		userDataGrid.datagrid('load', EasyUtil.serializeFieldValues($('#searchForm')));
 	});
 
@@ -131,6 +131,7 @@ $(function() {
 				}
 			}, {
 				text : commonBtn.close,
+				iconCls:'icon-remove',
 				handler : function() {
 					userFormDiv.dialog("close");
 				}
