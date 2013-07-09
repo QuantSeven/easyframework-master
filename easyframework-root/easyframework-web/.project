@@ -8,6 +8,7 @@
 		<project>easyframework-common</project>
 		<project>easyframework-persist</project>
 		<project>easyframework-core</project>
+		<project>easyframework-vo</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

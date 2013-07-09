@@ -1,6 +1,6 @@
 package com.easyframework.common.ui;
 
-public class UIHelper {
+public class PageHelper {
 
 	private int page;
 	private int rows;

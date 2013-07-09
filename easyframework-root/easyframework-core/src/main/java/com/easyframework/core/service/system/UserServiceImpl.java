@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.easyframework.common.orm.PropertyFilter;
 import com.easyframework.common.ui.DataGrid;
-import com.easyframework.common.ui.UIHelper;
+import com.easyframework.common.ui.PageHelper;
 import com.easyframework.common.utils.security.Identities;
 import com.easyframework.dao.system.UserDao;
 import com.easyframework.model.system.User;
@@ -59,11 +59,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public DataGrid<User> getDataGrid(UIHelper uiHelper, Map<String, Object> paramMap) {
+	public DataGrid<User> getDataGrid(PageHelper pageHelper, Map<String, Object> paramMap) {
 		String hql = "FROM User u";
 		Pagination<User> pagination = new Pagination<User>();
-		pagination.setPageNo(uiHelper.getPage());
-		pagination.setPageSize(uiHelper.getRows());
+		pagination.setPageNo(pageHelper.getPage());
+		pagination.setPageSize(pageHelper.getRows());
 		pagination = userDao.findPage(hql, pagination, paramMap);
 		return new DataGrid<User>(pagination.getTotalCount(), pagination.getResult());
 	}
@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public DataGrid<User> getDataGrid(UIHelper uiHelper, List<PropertyFilter> filters) {
+	public DataGrid<User> getDataGrid(PageHelper pageHelper, List<PropertyFilter> filters) {
 		Pagination<User> pagination = new Pagination<User>();
-		pagination.setPageNo(uiHelper.getPage());
-		pagination.setPageSize(uiHelper.getRows());
+		pagination.setPageNo(pageHelper.getPage());
+		pagination.setPageSize(pageHelper.getRows());
 		pagination = userDao.findPage(pagination, filters);
 		return new DataGrid<User>(pagination.getTotalCount(), pagination.getResult());
 	}

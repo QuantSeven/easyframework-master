@@ -6,7 +6,7 @@
 	<div region="north" border="false" style="height: 38px;overflow: hidden;">
 		<div class="box">
 			<div class="heading">
-				<img src="img/menu/arrow_in.png" /> <span><spring:message code="menu.txt.menumgr"/></span>
+				<img src="img/icon/menu.png" /> <span><spring:message code="menu.txt.menumgr"/></span>
 				<div class="buttons">
 					<a id="add" class="btn button"><i class="icon-plus"></i><spring:message code="common.btn.add"/></a>
 					<a id="edit" class="btn button" onclick=""><i class="icon-pencil"></i><spring:message code="common.btn.edit"/></a>

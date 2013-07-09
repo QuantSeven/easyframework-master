@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,61 +20,58 @@ import com.easyframework.common.ui.DataGrid;
 import com.easyframework.common.ui.JsonModel;
 import com.easyframework.common.ui.PageHelper;
 import com.easyframework.common.utils.string.StringUtils;
-import com.easyframework.core.service.system.UserService;
-import com.easyframework.model.system.User;
+import com.easyframework.core.service.system.GroupService;
+import com.easyframework.vo.system.GroupVO;
 import com.easyframework.web.controller.AbstractCtl;
 
 @Controller
-@RequestMapping("user/*")
-public class UserCtl extends AbstractCtl {
+@RequestMapping("group/*")
+public class GroupCtl extends AbstractCtl {
 
-	private static Logger logger = LoggerFactory.getLogger(UserCtl.class);
+	private static Logger logger = LoggerFactory.getLogger(GroupCtl.class);
 
-	private UserService userService;
+	private GroupService groupService;
 
 	@Resource
-	public void setUserService(UserService userService) {
-		this.userService = userService;
+	public void setGroupService(GroupService groupService) {
+		this.groupService = groupService;
 	}
 
 	@RequestMapping(value = "index", method = { RequestMethod.GET })
 	public String index() {
-		if (SecurityUtils.getSubject().isPermitted("user:view")) {
-			System.out.println("aaaaaaaaa");
-		}
-		return "system/user_index";
+		return "system/group_index";
 	}
 
 	@RequestMapping(value = "list", method = { RequestMethod.POST })
 	@ResponseBody
-	public DataGrid<User> list(HttpServletRequest request, PageHelper uiHelper) {
+	public DataGrid<GroupVO> list(HttpServletRequest request, PageHelper pageHelper) {
 		List<PropertyFilter> filters = PropertyFilter.buildFromHttpRequest(request);
-		return userService.getDataGrid(uiHelper, filters);
+		return groupService.getDataGrid(pageHelper, filters);
 	}
 
 	@RequestMapping(value = "form", method = { RequestMethod.GET })
 	public String form(Model model, @RequestParam(value = "id", defaultValue = "") String id) {
 		if (!StringUtils.isNullOrEmpty(id)) { // 如果存在id,说明是修改
-			User user = userService.get(id);
-			model.addAttribute("user", user);
+			GroupVO group = groupService.get(id);
+			model.addAttribute("group", group);
 		}
-		model.addAttribute("action", "user/saveOrUpdate");
-		return "system/user_form";
+		model.addAttribute("action", "group/saveOrUpdate");
+		return "system/group_form";
 	}
 
 	@RequestMapping(value = "saveOrUpdate", method = { RequestMethod.POST })
 	@ResponseBody
-	public JsonModel<User> saveOrUpdate(HttpServletRequest request, User user) {
-		if (!StringUtils.isNullOrEmpty(user) && !StringUtils.isNullOrEmpty(user.getId())) {
-			return update(user);
+	public JsonModel<GroupVO> saveOrUpdate(HttpServletRequest request, GroupVO group) {
+		if (!StringUtils.isNullOrEmpty(group) && !StringUtils.isNullOrEmpty(group.getId())) {
+			return update(group);
 		}
-		return insert(user);
+		return insert(group);
 	}
 
-	public JsonModel<User> insert(User user) {
-		JsonModel<User> jsonModel = new JsonModel<User>();
+	public JsonModel<GroupVO> insert(GroupVO group) {
+		JsonModel<GroupVO> jsonModel = new JsonModel<GroupVO>();
 		try {
-			user = userService.create(user);
+			group = groupService.create(group);
 			jsonModel.setMsg(getMessage("common.msg.insert.success"));
 		} catch (Exception e) {
 			jsonModel.setMsg(getMessage("common.msg.insert.error") + "\n" + e.getMessage());
@@ -84,10 +80,10 @@ public class UserCtl extends AbstractCtl {
 		return jsonModel;
 	}
 
-	public JsonModel<User> update(User user) {
-		JsonModel<User> jsonModel = new JsonModel<User>();
+	public JsonModel<GroupVO> update(GroupVO group) {
+		JsonModel<GroupVO> jsonModel = new JsonModel<GroupVO>();
 		try {
-			user = userService.modify(user);
+			group = groupService.modify(group);
 			jsonModel.setMsg(getMessage("common.msg.update.success"));
 		} catch (Exception e) {
 			jsonModel.setSuccess(false);
@@ -99,10 +95,10 @@ public class UserCtl extends AbstractCtl {
 
 	@RequestMapping(value = "delete", method = { RequestMethod.POST })
 	@ResponseBody
-	public JsonModel<User> delete(HttpServletRequest request, @RequestBody User user) {
-		JsonModel<User> jsonModel = new JsonModel<User>();
+	public JsonModel<GroupVO> delete(HttpServletRequest request, @RequestBody GroupVO group) {
+		JsonModel<GroupVO> jsonModel = new JsonModel<GroupVO>();
 		try {
-			userService.delete(user);
+			groupService.delete(group);
 			jsonModel.setMsg(getMessage("common.msg.delete.success"));
 		} catch (Exception e) {
 			jsonModel.setMsg(getMessage("common.msg.delete.error") + "\n" + e.getMessage());

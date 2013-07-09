@@ -19,6 +19,9 @@
         <dependent-module archiveName="easyframework-core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-core/easyframework-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="easyframework-vo.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/easyframework-vo/easyframework-vo">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="easyframework-web"/>
         <property name="java-output-path" value="/easyframework-web/target/classes"/>
     </wb-module>

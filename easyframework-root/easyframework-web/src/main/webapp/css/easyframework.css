@@ -229,6 +229,16 @@ a.button:hover {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.form-search>ul>li>textarea {
+	line-height: 20px;
+	min-width: 80px;
+	vertical-align: middle;
+	margin: 0px;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 /*----编辑页面的样式 start----*/
 .form {
 	position: relative;

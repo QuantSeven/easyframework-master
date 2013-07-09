@@ -11,6 +11,7 @@
 		<module>easyframework-persist</module>
 		<module>easyframework-core</module>
 		<module>easyframework-model</module>
+		<module>easyframework-vo</module>
 		<module>easyframework-common</module>
 		<module>easyframework-generic-dao</module>
 	</modules>

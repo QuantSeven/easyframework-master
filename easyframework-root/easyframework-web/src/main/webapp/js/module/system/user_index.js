@@ -53,7 +53,6 @@ $(function() {
 				}
 			}
 		}, ] ],
-		toolbar : '#toolbar',
 		onClickRow : function(rowIndex, rowData) {
 			selectedItem = rowData;
 		}
@@ -131,7 +130,7 @@ $(function() {
 				}
 			}, {
 				text : commonBtn.close,
-				iconCls:'icon-remove',
+				iconCls:'icon-cancel',
 				handler : function() {
 					userFormDiv.dialog("close");
 				}
