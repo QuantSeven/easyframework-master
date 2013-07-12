@@ -20,6 +20,8 @@
 					<a id="edit" class="btn button"><i class="icon-pencil"></i><spring:message code="common.btn.edit"/></a>
 					<a id="delete" class="btn button" ><i class="icon-trash"></i><spring:message code="common.btn.delete"/></a>
 					<a id="search" class="btn button" ><i class="icon-search"></i><spring:message code="common.btn.search"/></a>
+					<a id="addGroupUser" class="btn button" ><i class="icon-plus"></i><spring:message code="group.btn.addgroupuser"/></a>
+					<a id="deleteGroupUser" class="btn button" ><i class="icon-trash"></i><spring:message code="group.btn.deletegroupuser"/></a>
 				</div>
 			</div>
 		</div>
@@ -39,7 +41,7 @@
 		<table id="groupDataGrid"></table>
 	</div>
 	<!-- 左边tab面板 -->
-	<div region="east" border="false" style="overflow: hidden; width:350px;" title="用户组成员">
+	<div region="east" border="false" style="overflow: hidden; width:350px;" title='<spring:message code="group.txt.members"/>'>
 		<table id="groupUserDataGrid"></table>
 	</div>
 </div>

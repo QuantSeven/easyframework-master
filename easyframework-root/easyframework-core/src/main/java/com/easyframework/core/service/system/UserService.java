@@ -23,4 +23,10 @@ public interface UserService {
 	public DataGrid<User> getDataGrid(PageHelper pageHelper, Map<String, Object> paramMap);
 	
 	public DataGrid<User> getDataGrid(PageHelper pageHelper, List<PropertyFilter> filters);
+
+	public DataGrid<User> getGroupUser(String groupId);
+
+	public Boolean createGroupUser(String groupId,List<User> users);
+
+	public Boolean deleteGroupUser(String groupId, List<User> users);
 }

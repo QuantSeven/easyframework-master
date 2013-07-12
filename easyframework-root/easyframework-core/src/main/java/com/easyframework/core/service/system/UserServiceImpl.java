@@ -2,6 +2,7 @@ package com.easyframework.core.service.system;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -12,8 +13,12 @@ import com.easyframework.common.orm.PropertyFilter;
 import com.easyframework.common.ui.DataGrid;
 import com.easyframework.common.ui.PageHelper;
 import com.easyframework.common.utils.security.Identities;
+import com.easyframework.common.utils.string.StringUtils;
+import com.easyframework.dao.system.GroupDao;
 import com.easyframework.dao.system.UserDao;
+import com.easyframework.model.system.Group;
 import com.easyframework.model.system.User;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import framework.generic.page.Pagination;
@@ -26,6 +31,13 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	private GroupDao groupDao;
+
+	@Resource
+	public void setGroupDao(GroupDao groupDao) {
+		this.groupDao = groupDao;
 	}
 
 	@Override
@@ -80,6 +92,36 @@ public class UserServiceImpl implements UserService {
 		pagination.setPageSize(pageHelper.getRows());
 		pagination = userDao.findPage(pagination, filters);
 		return new DataGrid<User>(pagination.getTotalCount(), pagination.getResult());
+	}
+
+	@Override
+	public DataGrid<User> getGroupUser(String groupId) {
+		String hql = "FROM Group g WHERE g.id= ? ";
+		List<User> users = Lists.newArrayList();
+		Group group = groupDao.findUnique(hql, groupId);
+		if (!StringUtils.isNullOrEmpty(group)) {
+			for (User user : group.getUsers()) {
+				users.add(user);
+			}
+		}
+		return new DataGrid<User>(Long.valueOf(users.size()), users);
+	}
+
+	@Override
+	public Boolean createGroupUser(String groupId, List<User> users) {
+		Group group = groupDao.get(groupId);
+		if(!StringUtils.isNullOrEmpty(group)){
+			Set<User> set = group.getUsers();
+			groupDao.save(group);
+			set.addAll(users);
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean deleteGroupUser(String groupId, List<User> users) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

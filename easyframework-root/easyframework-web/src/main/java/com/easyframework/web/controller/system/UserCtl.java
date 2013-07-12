@@ -110,4 +110,13 @@ public class UserCtl extends AbstractCtl {
 		}
 		return jsonModel;
 	}
+
+	@RequestMapping(value = "getGroupUser", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public DataGrid<User> getGroupUser(HttpServletRequest request, PageHelper pageHelper, @RequestParam("groupId") String groupId) {
+		if (StringUtils.isNullOrEmpty(groupId)) {
+			return new DataGrid<User>();
+		}
+		return userService.getGroupUser(groupId);
+	}
 }

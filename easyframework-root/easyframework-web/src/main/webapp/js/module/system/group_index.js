@@ -47,6 +47,7 @@ $(function() {
 		}, ] ],
 		onClickRow : function(rowIndex, rowData) {
 			selectedItem = rowData;
+			showGroupUser();
 		}
 	});
 
@@ -131,9 +132,8 @@ $(function() {
 	};
 	/*用户组的用户操作*/
 	groupUserDataGrid = $(that).find('#groupUserDataGrid').datagrid({
-		url : 'group/list',
-		pagination : true,
-		pagePosition : 'bottom',
+		url : 'user/getGroupUser',
+		queryParams:{groupId:''},
 		singleSelect : true,
 		fitColumns : true,
 		fit : true,
@@ -148,9 +148,20 @@ $(function() {
 			title : i18nGroup.user.txt.accountno,
 			width : 100
 		},{
-			field : 'name',
-			title : i18nGroup.user.txt.name,
+			field : 'username',
+			title : i18nGroup.user.txt.username,
 			width : 100
 		}]]
+	});
+	
+	/*单击用户组每一条记录，显示用户组信息*/
+	var showGroupUser = function(){
+		groupUserDataGrid.datagrid('load', {    
+			groupId: selectedItem.id,    
+		});  
+	};
+	/*单击用户组每一条记录，显示用户组信息*/
+	$(that).find("#addGroupUser").on("click",function(){
+		
 	});
 });
